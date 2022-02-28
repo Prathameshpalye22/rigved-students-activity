@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="ex4.css" rel="stylesheet" type="text/css">
+    <title>spinner</title>
+    <style>
+        .loader {
+    border: 16px solid black; /* Light grey */
+    border-top: 16px solid aqua; /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+    </style>
+</head>
+<body>
+    <div class="loader" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+</body>
+</html>
