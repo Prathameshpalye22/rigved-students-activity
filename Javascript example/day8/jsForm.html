@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Form</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Validation Form</h1>
+    <form method="" action="" name="reg_form" onsubmit="return validate()">    
+          
+        <table>    
+            <tr>    
+                <td><label>First Name: </label></td>    
+                <td>    
+                    <input type="text" name="fname" autocomplete="off" placeholder="First Name">    
+                </td>    
+            </tr>    
+            <tr>    
+                <td><label>Last Name: </label></td>    
+                <td>    
+                    <input type="text" name="lname" autocomplete="off" placeholder="Last Name">    
+                </td>    
+            </tr>       
+            <tr>    
+                <td><label>Gender: </label></td>    
+                <td>    
+                    <input type="radio" name="gender" value="male">Male    
+                    <input type="radio" name="gender" value="femele">Female    
+                </td>    
+            </tr>    
+            <tr>    
+                <td><label>Email Id: </label></td>    
+                <td>    
+                    <input type="text" name="email" autocomplete="off" placeholder="example@gmail.com">    
+                </td>    
+            </tr>    
+            <tr>    
+                <td><label>Password: </label></td>    
+                <td>    
+                    <input type="text" name="password" autocomplete="off" placeholder="Password">    
+                </td>    
+            </tr> 
+            <tr>    
+                <td><label>Confirm Password: </label></td>    
+                <td>    
+                    <input type="text" name="confirm password" autocomplete="off" placeholder="Confirm Password">    
+                </td>    
+            </tr>   
+            <tr><td>Select Skills: </td>
+                <td><input type="checkbox" id="php" name="chb" value="php">
+                    <label for="vehicle1">PHP</label><br>
+                    <input type="checkbox" id="css" name="chb" value="css">
+                    <label for="css">CSS</label><br>
+                    <input type="checkbox" id="html" name="chb" value="html">
+                    <label for="html">HTML</label><br>
+                    <input type="checkbox" id="js" name="chb" value="js">
+                    <label for="js">JS</label><br>
+                </td>
+            </tr>   
+            <tr>    
+                <td>    
+                    <input type="submit" name="submit" value="Submit">    
+                    <input type="reset" name="reset" value="Reset">    
+                </td>    
+            </tr>             
+        </table>    
+    </form>    
+        <script src="form.js"></script>
+</body>
+</html>
