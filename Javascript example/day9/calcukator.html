@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate</title>
+   
+
+</head>
+<body>
+    <label> <h1 style=" margin-right: 50%;">
+        MyCal....!</h1>
+    </label>
+
+    <label> 
+        <h3 style=" margin-right: 40%" >
+             First Num:
+            <input type="text" id="value1"   autocomplete="off"> 
+        </h3>
+    </label>
+
+    <label> 
+        <h3 style=" margin-right: 40%" > 
+            Second Num:
+             <input type="text" id="value2" autocomplete="off"> 
+        </h3>
+    </label>
+
+    <label>
+         <h3 style=" margin-right: 40%"> 
+            Output :  
+            <input type="text" id="answer" name="output">
+        </h3>
+    </label>
+    
+
+    <label style="margin-right: 57%;">   
+        
+        <input type="button" id="answer" name="" value="Add" onclick="add()"/> 
+        <input type="button" name="sub" value="Sub" onclick="sub()">
+        <input type="button" name="mul" value="Mul" onclick="mul()">
+        <input type="button" name="div" value="Div" onclick="div()">
+
+    </label>
+
+    <script type="text/javascript">
+        function add(){
+            var val1 = parseInt(document.getElementById("value1").value);
+             var val2 = parseInt(document.getElementById("value2").value);
+             var out = document.getElementById("answer");
+             out.value = val1 + val2;
+        }
+        function sub(){
+            var val1 = parseInt(document.getElementById("value1").value);
+            var val2 = parseInt(document.getElementById("value2").value);
+            var out = document.getElementById("answer");
+            out.value = val1 - val2;
+
+        }
+        function mul(){
+            var val1 = parseInt(document.getElementById("value1").value);
+            var val2 = parseInt(document.getElementById("value2").value);
+            var out = document.getElementById("answer");
+            out.value = val1 * val2;
+        }
+
+    function div(){
+        var val1 = parseInt(document.getElementById("value1").value);
+            var val2 = parseInt(document.getElementById("value2").value);
+            var out = document.getElementById("answer");
+            out.value = val1 / val2;
+    }
+    
+    </script>
+
+    
+   
+</body>
+</html>

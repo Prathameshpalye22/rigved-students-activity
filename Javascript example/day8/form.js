@@ -28,13 +28,11 @@ function validate() {
         return false;    
     }    
     if (password.value.length <3) {    
-        alert("Password is required");    
-        password.focus();    
+        alert("Password is required");   
         return false;    
     }
-    if (confirmpassword.value.length <= 0) {    
-        alert("Confirm Password is required");    
-        confirmpassword.focus();    
+    if (password.value!=confirmpassword.value) {    
+        alert("Password & Confirm Password must be same");    
         return false;
     }        
     if (skills.value == "select course") {    
@@ -42,5 +40,5 @@ function validate() {
         skills.focus();    
         return false;    
     }    
-    return false;    
+    return true;    
 }    
