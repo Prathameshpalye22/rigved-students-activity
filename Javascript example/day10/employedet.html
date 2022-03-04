@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Details.</title>
+
+    <style>
+      table {
+        table-layout: fixed; width: 80%; border: 6px solid lightblue; border-radius: 1px;
+        margin-right: 26%; color: gray;
+      }
+
+      th, td {
+        padding: 15px; border: 3px solid lightblue; text-align: center; border-radius: 1px; 
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <h3>Nasted Object Table</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Customer ID</th>
+          <th>Fullname</th>
+          <th>State</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody id="tableData"></tbody>
+    </table>
+
+    <script>
+      var Cinfo = [
+        {
+          customerId: 8458,
+          firstName: "Vijay",
+          lastName: "Mane",
+          address: { state: "Maharashtra", city: "Ratnagiri" },
+        },
+        {
+          customerId: 1661,
+          firstName: "Mohit",
+          lastName: "Joshi",
+          address: { state: "Gujarat", city: " Surat" },
+        },
+        {
+          customerId: 8338,
+          firstName: "Mohit",
+          lastName: "Joshi",
+          address: { state: "kerala", city: "Kochi" },
+        },
+        {
+          customerId: 2525,
+          firstName: "Rohit",
+          lastName: "Kadam",
+          address: { state: "MP", city: "Indore" },
+        },
+      ];
+
+      var table = "<tbody>";
+      for (i = 0; i < Cinfo.length; i++) {
+        table += "<tr>";
+        table += "<td>" + Cinfo[i].customerId + "</td>";
+        table += "<td>" + Cinfo[i].firstName + " " + Cinfo[i].lastName + "</td>";
+        table += "<td>" + Cinfo[i].address.state + "</td>";
+        table += "<td>" + Cinfo[i].address.city + "</td>";
+        table += "</tr>";
+      }
+      table += "</tbody>";
+      document.getElementById("tableData").innerHTML = table;
+    </script>
+  </body>
+</html>
