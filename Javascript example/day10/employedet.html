@@ -35,7 +35,7 @@
     </table>
 
     <script>
-      var Cinfo = [
+      var CustmId = [
         {
           customerId: 8458,
           firstName: "Sachin",
@@ -63,12 +63,12 @@
       ];
 
       var table = "<tbody>";
-      for (i = 0; i < Cinfo.length; i++) {
+      for (i = 0; i < CustmId.length; i++) {
         table += "<tr>";
-        table += "<td>" + Cinfo[i].customerId + "</td>";
-        table += "<td>" + Cinfo[i].firstName + " " + Cinfo[i].lastName + "</td>";
-        table += "<td>" + Cinfo[i].address.state + "</td>";
-        table += "<td>" + Cinfo[i].address.city + "</td>";
+        table += "<td>" + CustmId[i].customerId + "</td>";
+        table += "<td>" + CustmId[i].firstName + " " + CustmId[i].lastName + "</td>";
+        table += "<td>" + CustmId[i].address.state + "</td>";
+        table += "<td>" + CustmId[i].address.city + "</td>";
         table += "</tr>";
       }
       table += "</tbody>";
