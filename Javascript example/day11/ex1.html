@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div style="padding: 20px; margin: 50px;
+      font-size: 20px; border: 5px  ;"
+      id="container" class="container">
+    <div class="text">
+      <p id="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo obcaecati similique, quam sit ea quasi ut esse ad officiis dignissimos!
+
+      </p>
+    </div>
+    <div class="button">
+        <button type="button" class="button active" onclick="fontchange(15)" name="btn1">
+            DECREASE
+           </button>
+           <button type="button" class="button active" onclick="fontchange(25)" name="btn2">
+            INCREASE
+           </button><br /><br />
+    </div>
+    </div>
+    <script>
+
+        function fontchange(n){
+            var paragraph = document.getElementById('paragraph');
+            paragraph.style.fontSize = n + "px";
+        }
+
+        var buttons = document.querySelector(".buttons");
+        var button = buttons.querySelectorAll(".button");
+
+        for(var i = 0; i < button.length; i++){
+            button[i].addEventListener('click', function(){
+                var current = document.getElementsByClassName('active');
+                current[0].className = current[0].className.replace("active", "");
+                this.className += " active"
+            })
+        }
+    </script>
+</body>
+</html>
