@@ -1,0 +1,94 @@
+.main {
+  background-color: beige; width: 1000px; height: 600px; top: 40px;;border: 2px solid black;left:163px;position:absolute; text-align: center;
+ }
+.left{
+  height: 429px;width:300px;background-color: aquamarine;position:relative;top:50px;left:20px;border:solid black;
+} 
+
+.t-right{
+  height: 180px;width:643px;background-color:cyan ;position:relative;top: -379px;left: 344px;border:solid black;
+}
+
+.b-right{
+  height: 210px;width: 634px;background-color: green;position:relative;top:-351px;left: 344px;border:solid black;
+
+}  
+#firstSquare {
+  width: 110px;
+  height:110px;
+  top: 20px;
+  left: 95px;
+  background: darkcyan;
+  position:absolute;
+  animation: move1 2s infinite alternate;
+  text-align:center;
+  border:solid black;
+}
+#firstCircle {
+  width: 100px;
+  height: 100px;
+  top:20px;
+  left:100px;
+  border-radius: 200px;
+  background: darkorchid;
+  position:absolute;
+  animation: move2 2s infinite alternate;
+  text-align: center;
+  border:solid black;
+}
+
+@keyframes move1 {
+  0%   {top:0px;bottom: 50px;  background: darkcyan;}
+
+ 
+  100% {top:300px;bottom:50px; background: darkorchid;}
+}
+
+@keyframes move2 {
+  0%   { top:300px;left:20px; background:darkorchid;}
+  
+ 
+  100% { top:20px;left:20px; background:darkcyan}
+}
+
+
+
+.box2{
+  height: 100px;width:100px;background-color:darksalmon ;margin: 50px;top: 50px;left:50px;display:inline-block;border:solid black;
+}
+#box1 {animation: roller1 2s infinite alternate ;}
+#box2 {animation: roller1 2s infinite alternate ;}
+#box3 {animation: roller1 2s infinite alternate ;}
+
+
+
+@keyframes roller1 {
+  0% {transform: rotatey(0deg); }
+  100% {transform: rotatey(360deg); }
+}
+@keyframes roller1 {
+  0% {transform: rotatey(0deg);}
+  100% {transform: rotatey(360deg);}
+}
+@keyframes roller1 {
+  0% {transform: rotatey(0deg);}
+  100% {transform: rotatey(360deg);}
+}
+
+.third-box {
+  width: 100px;
+  height: 50px;
+  background: red;
+  position: relative;
+  border:solid black;
+
+  animation: move3 5s infinite;
+}
+
+@keyframes move3 {
+  0%   {top: 0px; left: 0px; background: red;}
+  25%  {top: 0px; left: 500px; background: blue;}
+  50%  {top: 100px; left: 500px; background: yellow;}
+  75%  {top: 100px; left: 0px; background: black;}
+  100% {top: 0px; left: 0px; background: red;}
+}
