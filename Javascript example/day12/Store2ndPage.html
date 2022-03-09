@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Page !</title>
+    <style>
+        body{
+            background-color: rgb(236, 175, 62);   
+        }
+        h1{ 
+            text-align: center;
+            border: 5pt solid indigo;
+            background-color:skyblue;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Second Page</h1>
+    
+    <center>
+    <div id = 'n1'> </div>
+    <div id = 'a1'> </div>
+    
+    <script>
+        var data1 = sessionStorage.getItem('user');
+        var data2 = sessionStorage.getItem('user1');
+
+        document.getElementById('n1').innerHTML = " <B>Hello </B>, " + data1 +"<br/><br/>"  ;
+        document.getElementById('a1').innerHTML = " <B>Your Age is </B> , " + data2 + " <B> years </B>  ";
+        
+    </script><hr/>
+    <a href="Store1stPage.html">Previous Page </a> &nbsp;&nbsp;
+    <a href="Store3rdPage.html">Next Page </a> 
+    </center>
+</body>
+</html>

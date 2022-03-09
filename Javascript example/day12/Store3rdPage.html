@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#rd Page !</title>
+    <style>
+    body{
+        background-color: rgb(236, 175, 62);   
+    }
+    h1{
+        text-align: center;
+            border: 5pt solid indigo;
+            background-color:skyblue;
+    }
+    .inputstyle{
+            border: 2pt outset red;
+        }
+</style>
+</head>
+<body>
+    <h1>Third Page</h1>
+    <center>
+    <b>Edit Age :</b> &nbsp;<input class="inputstyle" id="e1" type="text" name="input3"><br> <br/>
+    <input style="background-color: lightgreen ;" type="button" name="btn2" value="   Edit    " onclick="editData()"> <br/><hr/>
+    <a href="Store2ndPage.html"> Previous Page ! </a>
+
+    <script>
+        function editData(){
+            var edit = document.getElementById('e1').value;
+            sessionStorage.setItem('user1',edit);
+        }
+        
+    </script>
+
+    </center>
+    
+</body>
+</html>
