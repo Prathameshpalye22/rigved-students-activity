@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Callback Timer and Anonymous</h3>
+    <div id="i1"></div>
+    <div id="i2"></div>
+    <script type='text/javascript'>
+        var ele1=document.getElementById('i1');
+        setTimeout(function(){
+            var ele2=document.getElementById('i2');
+            ele2.innerHTML='Nature, in the broadest sense, is the physical world or universe.';
+            console.log('updated i2')
+        }, 4000);
+        ele1.innerHTML='Hello World';
+        console.log('updated i1');
+    </script>
+</body>
+</html>
