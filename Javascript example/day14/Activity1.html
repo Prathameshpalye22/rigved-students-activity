@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            table-layout: fixed; width: 80%; border: 6px solid lightblue; border-radius: 1px;
+        margin-right: 26%; color: gray;
+        }
+        th, td {
+        padding: 15px; border: 2px solid lightblue; text-align: center; border-radius: 1px; 
+      }
+    </style>
+</head>
+<body>
+    <h3>Employee details template </h3>
+    <div id="table1"></div>
+    <script type="text/javascript">
+        let users =[
+            {name: "Alex", age: "35", address: {state: "KA", city: "BLR"}},
+            {name: "Bruce", age: "45"},
+            {name: "Charle", age: "25", address: {state: "MH", city: "MBI"}},
+            {name: "David", age: "49"},
+            {name: "Edward", age: "33", address: {state: "TN", city: "CHN"}}
+        ];
+        let table = "<table >";
+            table +="<tr>";
+            table +="<th rowspan=2>"+'Name'+'</th>';  
+            table +="<th rowspan=2>"+'Age'+'</th>';
+            table +="<th>"+'State'+'</th>';
+            table +="<th>"+'City'+'</th>';
+            table +="</tr>"; 
+            table +="<tr>";
+            table +="</tr>";
+            for(let i = 0; i < users.length; i++) {
+            table +="<tr>";
+            table +="<td>"+`<p>${users[i]?.name}</p>`+"</td>";
+            table +="<td>"+`<p>${users[i]?.age}</p>`+"</td>"; 
+            table +="<td>"+`<p>${users[i]?.address?.state}</p>`+"</td>";
+            table +="<td>"+`<p> ${users[i]?.address?.city}</p>`+"</td>";  
+        }
+            table += "</table>";
+            document.getElementById("table1").innerHTML = table
+    </script>
+</body>
+</html> 
