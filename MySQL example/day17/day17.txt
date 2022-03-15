@@ -1,0 +1,121 @@
+mysql> use rigved_db;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| t1                  |
+| t2                  |
++---------------------+
+2 rows in set (0.01 sec)
+
+mysql> create table Employee(Eid int primary key, Ename varchar(20) not null, Age int CHECK(Age>=18) CHECK(Age<=60), email varchar(50) unique);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc Employee;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Eid   | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(20) | NO   |     | NULL    |       |
+| Age   | int         | YES  |     | NULL    |       |
+| email | varchar(50) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into Employee value(101, 'Alex',56, 'alex01@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee value(102, 'David',55, 'david02@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee value(103, 'Virat',42, 'virat03@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Employee value(104, 'Vijay',39, 'vijay04@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Employee;
++-----+-------+------+-------------------+
+| Eid | Ename | Age  | email             |
++-----+-------+------+-------------------+
+| 101 | Alex  |   56 | alex01@gmail.com  |
+| 102 | David |   55 | david02@gmail.com |
+| 103 | Virat |   42 | virat03@gmail.com |
+| 104 | Vijay |   39 | vijay04@gmail.com |
++-----+-------+------+-------------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table Employee add column Pan varchar(10), add column Aadhar bigint;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Employee add constraint Pan unique key(Pan), add constraint Aadhar unique key(Aadhar);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Eid    | int         | NO   | PRI | NULL    |       |
+| Ename  | varchar(20) | NO   |     | NULL    |       |
+| Age    | int         | YES  |     | NULL    |       |
+| email  | varchar(50) | YES  | UNI | NULL    |       |
+| Pan    | varchar(10) | YES  | UNI | NULL    |       |
+| Aadhar | bigint      | YES  | UNI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from Employee;
++-----+-------+------+-------------------+------+--------+
+| Eid | Ename | Age  | email             | Pan  | Aadhar |
++-----+-------+------+-------------------+------+--------+
+| 101 | Alex  |   56 | alex01@gmail.com  | NULL |   NULL |
+| 102 | David |   55 | david02@gmail.com | NULL |   NULL |
+| 103 | Virat |   42 | virat03@gmail.com | NULL |   NULL |
+| 104 | Vijay |   39 | vijay04@gmail.com | NULL |   NULL |
++-----+-------+------+-------------------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Employee value(101, 'Alex',56, 'alex01@gmail.com', 'AB13CD', 246813579);
+ERROR 1062 (23000): Duplicate entry '101' for key 'employee.PRIMARY'
+mysql> insert into Employee value(105, 'Sultan',56, 'sultan05@gmail.com', 'AB13CD', 246813579);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee value(106, 'Jonny',24, 'jon06@gmail.com', 'EF24GH', 142536475);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Employee;
++-----+--------+------+--------------------+--------+-----------+
+| Eid | Ename  | Age  | email              | Pan    | Aadhar    |
++-----+--------+------+--------------------+--------+-----------+
+| 101 | Alex   |   56 | alex01@gmail.com   | NULL   |      NULL |
+| 102 | David  |   55 | david02@gmail.com  | NULL   |      NULL |
+| 103 | Virat  |   42 | virat03@gmail.com  | NULL   |      NULL |
+| 104 | Vijay  |   39 | vijay04@gmail.com  | NULL   |      NULL |
+| 105 | Sultan |   56 | sultan05@gmail.com | AB13CD | 246813579 |
+| 106 | Jonny  |   24 | jon06@gmail.com    | EF24GH | 142536475 |
++-----+--------+------+--------------------+--------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> alter table Employee drop cloumn Pan, drop column Aadhar;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Pan, drop column Aadhar' at line 1
+mysql> alter table Employee drop column Pan, drop column Aadhar;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employee;
++-----+--------+------+--------------------+
+| Eid | Ename  | Age  | email              |
++-----+--------+------+--------------------+
+| 101 | Alex   |   56 | alex01@gmail.com   |
+| 102 | David  |   55 | david02@gmail.com  |
+| 103 | Virat  |   42 | virat03@gmail.com  |
+| 104 | Vijay  |   39 | vijay04@gmail.com  |
+| 105 | Sultan |   56 | sultan05@gmail.com |
+| 106 | Jonny  |   24 | jon06@gmail.com    |
++-----+--------+------+--------------------+
+6 rows in set (0.00 sec)
+
+mysql>
