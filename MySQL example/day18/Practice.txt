@@ -1,0 +1,305 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rigved_db          |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use rigved_db;
+Database changed
+mysql> create table t3(tno int primary key auto_increment, tname varchar(15));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into t3(tname) values('John');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t3(tname) values('Raj');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from t3;
++-----+-------+
+| tno | tname |
++-----+-------+
+|   1 | John  |
+|   2 | Raj   |
++-----+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table t4(tno int primary key auto_increment, tname varchar(15))auto_increment=500;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into t4(tname) values('Ravi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into t4(tname) values('Alex');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from t4;
++-----+-------+
+| tno | tname |
++-----+-------+
+| 500 | Ravi  |
+| 501 | Alex  |
++-----+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table Emp(id int primary key auto_increment, name varchar(15), dob date, salary double);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into Emp(name, dob, salary) values('Alex', '2000-04-11', 35600.26);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Emp(name, dob, salary) values('Raj', '2001-11-08', 33500.51);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Emp;
++----+------+------------+----------+
+| id | name | dob        | salary   |
++----+------+------------+----------+
+|  1 | Alex | 2000-04-11 | 35600.26 |
+|  2 | Raj  | 2001-11-08 | 33500.51 |
++----+------+------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Emp(name, dob, salary) values('Ravi', '1999-11-21', 45600.41);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Emp(name, dob, salary) values('Ravi', '2005-10-20', 35300.60);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Emp(name, dob, salary) values('Aadarsh', '2004-07-20', 37300.09);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Emp;
++----+---------+------------+----------+
+| id | name    | dob        | salary   |
++----+---------+------------+----------+
+|  1 | Alex    | 2000-04-11 | 35600.26 |
+|  2 | Raj     | 2001-11-08 | 33500.51 |
+|  3 | Ravi    | 1999-11-21 | 45600.41 |
+|  4 | Ravi    | 2005-10-20 |  35300.6 |
+|  5 | Aadarsh | 2004-07-20 | 37300.09 |
++----+---------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Emp where year(dob) > 1995;
++----+---------+------------+----------+
+| id | name    | dob        | salary   |
++----+---------+------------+----------+
+|  1 | Alex    | 2000-04-11 | 35600.26 |
+|  2 | Raj     | 2001-11-08 | 33500.51 |
+|  3 | Ravi    | 1999-11-21 | 45600.41 |
+|  4 | Ravi    | 2005-10-20 |  35300.6 |
+|  5 | Aadarsh | 2004-07-20 | 37300.09 |
++----+---------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Emp where year(dob) > 2001;
++----+---------+------------+----------+
+| id | name    | dob        | salary   |
++----+---------+------------+----------+
+|  4 | Ravi    | 2005-10-20 |  35300.6 |
+|  5 | Aadarsh | 2004-07-20 | 37300.09 |
++----+---------+------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Emp where year(dob) > 2000 and year(dob) < 2005;
++----+---------+------------+----------+
+| id | name    | dob        | salary   |
++----+---------+------------+----------+
+|  2 | Raj     | 2001-11-08 | 33500.51 |
+|  5 | Aadarsh | 2004-07-20 | 37300.09 |
++----+---------+------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Emp where year(dob) > 1999 and year(dob) < 2005;
++----+---------+------------+----------+
+| id | name    | dob        | salary   |
++----+---------+------------+----------+
+|  1 | Alex    | 2000-04-11 | 35600.26 |
+|  2 | Raj     | 2001-11-08 | 33500.51 |
+|  5 | Aadarsh | 2004-07-20 | 37300.09 |
++----+---------+------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select date_format(dob, '%d-%m-%y') from Emp;
++------------------------------+
+| date_format(dob, '%d-%m-%y') |
++------------------------------+
+| 11-04-00                     |
+| 08-11-01                     |
+| 21-11-99                     |
+| 20-10-05                     |
+| 20-07-04                     |
++------------------------------+
+5 rows in set (0.01 sec)
+
+mysql> select date_format(dob, '%d-%m-%Y') from Emp;
++------------------------------+
+| date_format(dob, '%d-%m-%Y') |
++------------------------------+
+| 11-04-2000                   |
+| 08-11-2001                   |
+| 21-11-1999                   |
+| 20-10-2005                   |
+| 20-07-2004                   |
++------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select lower('HELLO every one');
++--------------------------+
+| lower('HELLO every one') |
++--------------------------+
+| hello every one          |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format('2005-10-20', '%d-%m-%Y');
++---------------------------------------+
+| date_format('2005-10-20', '%d-%m-%Y') |
++---------------------------------------+
+| 20-10-2005                            |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('jack and jlue', 'j', 'b');
++------------------------------------+
+| replace('jack and jlue', 'j', 'b') |
++------------------------------------+
+| back and blue                      |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('jack and jue', 'jack and jue', 'black and blue');
++-----------------------------------------------------------+
+| replace('jack and jue', 'jack and jue', 'black and blue') |
++-----------------------------------------------------------+
+| black and blue                                            |
++-----------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select reverse('THANK YOU');
++----------------------+
+| reverse('THANK YOU') |
++----------------------+
+| UOY KNAHT            |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select name, reverse(name) from Emp;
++---------+---------------+
+| name    | reverse(name) |
++---------+---------------+
+| Alex    | xelA          |
+| Raj     | jaR           |
+| Ravi    | ivaR          |
+| Ravi    | ivaR          |
+| Aadarsh | hsradaA       |
++---------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select name, reverse(name, 'i', 'ee') from Emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', 'i', 'ee') from Emp' at line 1
+mysql> select name, replace(name, 'i', 'ee') from Emp;
++---------+--------------------------+
+| name    | replace(name, 'i', 'ee') |
++---------+--------------------------+
+| Alex    | Alex                     |
+| Raj     | Raj                      |
+| Ravi    | Ravee                    |
+| Ravi    | Ravee                    |
+| Aadarsh | Aadarsh                  |
++---------+--------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp where year(dob) > 1999 and year(dob) < 2005;
++----+---------+------------+----------+
+| id | name    | dob        | salary   |
++----+---------+------------+----------+
+|  1 | Alex    | 2000-04-11 | 35600.26 |
+|  2 | Raj     | 2001-11-08 | 33500.51 |
+|  5 | Aadarsh | 2004-07-20 | 37300.09 |
++----+---------+------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Emp;
++----+---------+------------+----------+
+| id | name    | dob        | salary   |
++----+---------+------------+----------+
+|  1 | Alex    | 2000-04-11 | 35600.26 |
+|  2 | Raj     | 2001-11-08 | 33500.51 |
+|  3 | Ravi    | 1999-11-21 | 45600.41 |
+|  4 | Ravi    | 2005-10-20 |  35300.6 |
+|  5 | Aadarsh | 2004-07-20 | 37300.09 |
++----+---------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select min(salary) from Emp;
++-------------+
+| min(salary) |
++-------------+
+|    33500.51 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from Emp;
++-------------+
+| max(salary) |
++-------------+
+|    45600.41 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> insert into Emp(name, dob, salary) values('Sachin', current_date, 37300.09);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Emp;
++----+---------+------------+----------+
+| id | name    | dob        | salary   |
++----+---------+------------+----------+
+|  1 | Alex    | 2000-04-11 | 35600.26 |
+|  2 | Raj     | 2001-11-08 | 33500.51 |
+|  3 | Ravi    | 1999-11-21 | 45600.41 |
+|  4 | Ravi    | 2005-10-20 |  35300.6 |
+|  5 | Aadarsh | 2004-07-20 | 37300.09 |
+|  6 | Sachin  | 2022-03-16 | 37300.09 |
++----+---------+------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select current_time;
++--------------+
+| current_time |
++--------------+
+| 12:52:09     |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select current_month;
+ERROR 1054 (42S22): Unknown column 'current_month' in 'field list'
+mysql> select current_date;
++--------------+
+| current_date |
++--------------+
+| 2022-03-16   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql>
