@@ -1,0 +1,103 @@
+mysql> create table USER (user_id int primary key auto_increment , user_name varchar(20), password varchar(20))$$
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc user $$
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| user_id   | int         | NO   | PRI | NULL    | auto_increment |
+| user_name | varchar(20) | YES  |     | NULL    |                |
+| password  | varchar(20) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+-----------------------------------------------------------------------------------------------------------------------
+
+mysql> create table user_history(USER_ID int ,USER_NAME varchar(20),OLD_PASSWORD varchar(20),TIME_UPDATED time)$$
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc user_history$$
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| USER_ID      | int         | YES  |     | NULL    |       |
+| USER_NAME    | varchar(20) | YES  |     | NULL    |       |
+| OLD_PASSWORD | varchar(20) | YES  |     | NULL    |       |
+| TIME_UPDATED | time        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+mysql> insert into user(user_name,password)  values('Virat','viru123')$$
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into user(user_name,password)  values('Anushka','anu321')$$
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from user$$
++---------+-----------+----------+
+| user_id | user_name | password |
++---------+-----------+----------+
+|       1 | Virat     | viru123  |
+|       2 | Anushka   | anu321   |
++---------+-----------+----------+
+2 rows in set (0.00 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+mysql>  create trigger user_update
+    -> before update on user for each row
+    -> begin
+    -> insert into user_history values(old.user_id, old.user_name, old.password, current_time());
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+mysql> update user set password='anu789' where user_id=2$$
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from user$$
++---------+-----------+----------+
+| user_id | user_name | password |
++---------+-----------+----------+
+|       1 | Virat     | viru123  |
+|       2 | Anushka   | anu789   |
++---------+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select *from user_history$$
++---------+-----------+--------------+--------------+
+| USER_ID | USER_NAME | OLD_PASSWORD | TIME_UPDATED |
++---------+-----------+--------------+--------------+
+|       2 | Anushka   | anu321       | 19:56:38     |
++---------+-----------+--------------+--------------+
+1 row in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+mysql> update user set password='viru2422' where user_id=1$$
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from user$$
++---------+-----------+----------+
+| user_id | user_name | password |
++---------+-----------+----------+
+|       1 | Virat     | viru2422 |
+|       2 | Anushka   | anu789   |
++---------+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select *from user_history$$
++---------+-----------+--------------+--------------+
+| USER_ID | USER_NAME | OLD_PASSWORD | TIME_UPDATED |
++---------+-----------+--------------+--------------+
+|       2 | Anushka   | anu321       | 19:56:38     |
+|       1 | Virat     | viru123      | 19:58:26     |
++---------+-----------+--------------+--------------+
+2 rows in set (0.00 sec)
+
