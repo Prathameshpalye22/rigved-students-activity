@@ -45,8 +45,8 @@ mysql> create procedure salutation1(in p_id int)
     -> select gender into person1_gen from person1 where id = p_id;
     -> select name into person1_nam from person1 where id = p_id;
     -> if person1_gen = 'Male'
-    -> then update person1 set name = concat('Mr.', person1_nam) where id = p_id;
-    -> else update person1 set name = concat('Ms.', person1_nam) where id = p_id;
+    -> then select concat('Mr.', person1_nam) where id = p_id;
+    -> else select concat('Ms.', person1_nam) where id = p_id;
     -> end if;
     -> end
     -> $$
