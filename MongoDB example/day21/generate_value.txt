@@ -1,0 +1,33 @@
+> db.createCollection("University")
+{ "ok" : 1 }
+> db.University.insert({_id: "s_id", sequence_value:0});
+WriteResult({ "nInserted" : 1 })
+
+> function getValue1(sequenceValue1){
+... let sequence = db.University.findAndModify({
+... query: {_id: sequenceValue1},
+... update: {$inc: {sequence_value: 1}},
+... new: true
+... });
+... return "ABC" + sequence.sequence_value;
+... }
+
+> db.University.insert({"_id": getValue1("s_id"), "name": "Alex"});
+WriteResult({ "nInserted" : 1 })
+
+> db.University.insert({"_id": getValue1("s_id"), "name": "Raj"});
+WriteResult({ "nInserted" : 1 })
+
+> db.University.insert({"_id": getValue1("s_id"), "name": "Vijay"});
+WriteResult({ "nInserted" : 1 })
+
+> db.University.insert({"_id": getValue1("s_id"), "name": "Ajay"});
+WriteResult({ "nInserted" : 1 })
+
+> db.University.find();
+{ "_id" : "s_id", "sequence_value" : 4 }
+{ "_id" : "ABC1", "name" : "Alex" }
+{ "_id" : "ABC2", "name" : "Raj" }
+{ "_id" : "ABC3", "name" : "Vijay" }
+{ "_id" : "ABC4", "name" : "Ajay" }
+>

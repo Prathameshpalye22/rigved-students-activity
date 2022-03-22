@@ -1,0 +1,83 @@
+Microsoft Windows [Version 10.0.22000.556]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Prathamesh>mongo
+'mongo' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Prathamesh>set path=C:\mongodb\mongodb-windows-x86_64-5.0.6\mongodb-win32-x86_64-windows-5.0.6\bin;%path%
+
+C:\Users\Prathamesh>mongo
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("34f1e06c-e900-4c3f-9a01-7d6fc88fb4d0") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-03-22T19:21:30.417+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2022-03-22T19:21:30.417+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mydb    0.000GB
+> show collections;
+> show collections
+> use mydb;
+switched to db mydb
+> show collections;
+EMPLOYEE
+employee
+myCollection
+>
+> db.createCollection("student");
+{ "ok" : 1 }
+> db.student.insert({_id: "student_id", sequence_value:0});
+WriteResult({ "nInserted" : 1 })
+> function getValue(sequenceValue){
+... let sequence=db.student.findAndModify({
+... query: {_id: sequenceValue},
+... update: {$inc: {sequence_value: 1}},
+... new: true
+... });
+... return sequence.sequence_value;
+... }
+>
+> db.student.insert({"_id": getValue("student_id"), "name": "Alex", "age": 30,});
+WriteResult({ "nInserted" : 1 })
+
+> db.student.insert({"_id": getValue("student_id"), "name": "Raj", "age": 29,});
+WriteResult({ "nInserted" : 1 })
+
+> db.student.insert({"_id": getValue("student_id"), "name": "Vijay", "age": 31,});
+WriteResult({ "nInserted" : 1 })
+
+> db.student.insert({"_id": getValue("student_id"), "name": "Ajay", "age": 28,});
+WriteResult({ "nInserted" : 1 })
+
+> db.student.find();
+{ "_id" : "student_id", "sequence_value" : 4 }
+{ "_id" : 1, "name" : "Alex", "age" : 30 }
+{ "_id" : 2, "name" : "Raj", "age" : 29 }
+{ "_id" : 3, "name" : "Vijay", "age" : 31 }
+{ "_id" : 4, "name" : "Ajay", "age" : 28 }
+>

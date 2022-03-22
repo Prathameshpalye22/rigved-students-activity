@@ -1,0 +1,161 @@
+
+C:\Users\Prathamesh>set path=C:\mongodb\mongodb-database-tools-windows-x86_64-100.5.2\mongodb-database-tools-windows-x86_64-100.5.2\bin;%path%
+
+C:\Users\Prathamesh>mongodump
+2022-03-22T15:04:18.501+0530    writing admin.system.version to dump\admin\system.version.bson
+2022-03-22T15:04:18.505+0530    done dumping admin.system.version (1 document)
+2022-03-22T15:04:18.508+0530    writing mydb.myCollection to dump\mydb\myCollection.bson
+2022-03-22T15:04:18.512+0530    done dumping mydb.myCollection (7 documents)
+2022-03-22T15:04:18.822+0530    writing mydb.employee to dump\mydb\employee.bson
+2022-03-22T15:04:18.822+0530    writing mydb.EMPLOYEE to dump\mydb\EMPLOYEE.bson
+2022-03-22T15:04:18.826+0530    done dumping mydb.employee (4 documents)
+2022-03-22T15:04:18.826+0530    done dumping mydb.EMPLOYEE (0 documents)
+
+C:\Users\Prathamesh>mongorestore
+2022-03-22T15:09:19.613+0530    error connecting to host: could not connect to server: server selection error: server selection timeout, current topology: { Type: Single, Servers: [{ Addr: localhost:27017, Type: Unknown, Last error: connection() error occured during connection handshake: dial tcp [::1]:27017: connectex: No connection could be made because the target machine actively refused it. }, ] }
+
+C:\Users\Prathamesh>mongorestore
+2022-03-22T15:13:33.053+0530    using default 'dump' directory
+2022-03-22T15:13:33.054+0530    preparing collections to restore from
+2022-03-22T15:13:33.055+0530    reading metadata for mydb.EMPLOYEE from dump\mydb\EMPLOYEE.metadata.json
+2022-03-22T15:13:33.055+0530    reading metadata for mydb.myCollection from dump\mydb\myCollection.metadata.json
+2022-03-22T15:13:33.372+0530    restoring mydb.myCollection from dump\mydb\myCollection.bson
+2022-03-22T15:13:33.381+0530    finished restoring mydb.EMPLOYEE (0 documents, 0 failures)
+2022-03-22T15:13:33.383+0530    restoring mydb.employee from dump\mydb\employee.bson
+2022-03-22T15:13:33.400+0530    finished restoring mydb.employee (4 documents, 0 failures)
+2022-03-22T15:13:33.685+0530    finished restoring mydb.myCollection (7 documents, 0 failures)
+2022-03-22T15:13:33.685+0530    no indexes to restore for collection mydb.myCollection
+2022-03-22T15:13:33.687+0530    no indexes to restore for collection mydb.EMPLOYEE
+2022-03-22T15:13:33.687+0530    11 document(s) restored successfully. 0 document(s) failed to restore.
+
+C:\Users\Prathamesh>mongo
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("deccd393-79a0-4a4e-8120-d633ad11a51a") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-03-22T15:13:20.155+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2022-03-22T15:13:20.156+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mydb    0.000GB
+
+> use mydb;
+switched to db mydb
+> show collections;
+EMPLOYEE 
+employee
+myCollection
+
+> db.EMPLOYEE.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Virat", "age" : 33 }
+{ "_id" : 30, "name" : "Ravi", "age" : 26 }
+{ "_id" : 40, "name" : "Ajay", "age" : 38 }
+{ "_id" : 50, "name" : "Vijay", "age" : 34 }
+{ "_id" : 60, "name" : "Rajesh", "age" : 31 }
+{ "_id" : 70, "name" : "David", "age" : 38 }
+
+--------------------------------------------------------------------------------
+$in:-
+
+> db.EMPLOYEE.find({age:{$in:[34]}});
+{ "_id" : 50, "name" : "Vijay", "age" : 34 }
+
+> db.EMPLOYEE.find({age:{$in:[31]}});
+{ "_id" : 60, "name" : "Rajesh", "age" : 31 }
+
+> db.EMPLOYEE.find({age:{$in:[38]}});
+{ "_id" : 40, "name" : "Ajay", "age" : 38 }
+{ "_id" : 70, "name" : "David", "age" : 38 }
+----------------------------------------------------------------------------------
+$nin:-
+
+> db.EMPLOYEE.find({age: { $nin:[38]}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Virat", "age" : 33 }
+{ "_id" : 30, "name" : "Ravi", "age" : 26 }
+{ "_id" : 50, "name" : "Vijay", "age" : 34 }
+{ "_id" : 60, "name" : "Rajesh", "age" : 31 }
+
+--------------------------------------------------------------------------------
+$lt:-
+
+> db.EMPLOYEE.find({age:{$lt:38}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Virat", "age" : 33 }
+{ "_id" : 30, "name" : "Ravi", "age" : 26 }
+{ "_id" : 50, "name" : "Vijay", "age" : 34 }
+{ "_id" : 60, "name" : "Rajesh", "age" : 31 }
+>
+---------------------------------------------------------------------------------
+$lte:-
+
+> db.EMPLOYEE.find({age:{$lte:33}});
+{ "_id" : 20, "name" : "Virat", "age" : 33 }
+{ "_id" : 30, "name" : "Ravi", "age" : 26 }
+{ "_id" : 60, "name" : "Rajesh", "age" : 31 }
+---------------------------------------------------------------------------------
+$gt:-
+
+
+> db.EMPLOYEE.find({age:{$gt:33}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 40, "name" : "Ajay", "age" : 38 }
+{ "_id" : 50, "name" : "Vijay", "age" : 34 }
+{ "_id" : 70, "name" : "David", "age" : 38 }
+--------------------------------------------------------------------------------------
+$gte :-
+
+> db.EMPLOYEE.find({age:{$gte:33}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Virat", "age" : 33 }
+{ "_id" : 40, "name" : "Ajay", "age" : 38 }
+{ "_id" : 50, "name" : "Vijay", "age" : 34 }
+{ "_id" : 70, "name" : "David", "age" : 38 }
+----------------------------------------------------------------------------------
+$not:-
+
+> db.EMPLOYEE.find({ age: { $not: { $gte: 40}}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Virat", "age" : 33 }
+{ "_id" : 30, "name" : "Ravi", "age" : 26 }
+{ "_id" : 40, "name" : "Ajay", "age" : 38 }
+{ "_id" : 50, "name" : "Vijay", "age" : 34 }
+{ "_id" : 60, "name" : "Rajesh", "age" : 31 }
+{ "_id" : 70, "name" : "David", "age" : 38 }
+---------------------------------------------------------------------------------
+$exists:-
+
+> db.EMPLOYEE.find({age:{ $exists: true, $gte: 35}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 40, "name" : "Ajay", "age" : 38 }
+{ "_id" : 70, "name" : "David", "age" : 38 }
+--------------------------------------------------------------------------------
+$regex:-
+
+> db.EMPLOYEE.find({"name": {$regex: 'Vijay'}});
+{ "_id" : 50, "name" : "Vijay", "age" : 34 }
+>
