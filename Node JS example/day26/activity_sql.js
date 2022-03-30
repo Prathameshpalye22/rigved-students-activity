@@ -1,4 +1,4 @@
-let mysql=require('mysql');
+let mysql=require('mysql2');
 let express=require('express');
 let app=express();
 let con=mysql.createConnection({
@@ -13,10 +13,11 @@ let parser=require('body-parser');
 app.listen(port,()=>console.log(`Server is running at port ${port}`));
 con.connect((error)=>{
     if(error) throw error;
-    console.log('Connected!')
+    console.log('Connected Mysql!')
 });
 
 app.use(parser.json());
+
 app.post('/emp',(request,response)=>{
    let object=request.body;
    console.log(object);
@@ -29,7 +30,6 @@ app.post('/emp',(request,response)=>{
 app.get('/emp',(request,response)=>{  
         con.query(("select * from employe"),(err,result)=>{
             if(err) throw err;
-            console.log(result);
             response.json(result);
         })
     })
