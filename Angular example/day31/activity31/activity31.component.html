@@ -1,0 +1,21 @@
+<div>
+    Firstname: <input type = "text" #first> <br/>
+    Lastname: <input type = "text" #second> <br/>
+    <button (click)="save(first.value, second.value)">Save</button>
+    <div>
+       <table  class="table table-striped" border="2">
+           <thead>
+               <tr>
+                   <th>Firstname</th>
+                   <th>Lastname</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr *ngFor="let u of array">
+                   <td>{{u.firstn}}</td>
+                   <td>{{u.lastn}}</td>
+               </tr>
+           </tbody>
+       </table>
+    </div>
+</div>
