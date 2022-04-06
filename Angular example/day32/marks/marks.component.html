@@ -1,0 +1,19 @@
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Roll Number</th>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of students">
+                <td>{{m.rollNo}}</td>
+                <td>{{m.Name}}</td>
+                <td *ngIf="m.marks>=40; else elseBlock"><p [style]="{'color':'green'}">{{m.marks}}</p></td>
+                <ng-template #elseBlock><p [style]="{'color':'red'}">{{m.marks}}</p></ng-template>                
+            </tr>
+        </tbody>
+    </table>
+</div>
