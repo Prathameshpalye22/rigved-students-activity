@@ -1,0 +1,11 @@
+<div>
+    <table border="2">
+        <tr>
+            <tbody>
+                <tr><td>Cart Size: {{num}}</td></tr>
+                <tr><td>Total Amount: {{p2}}</td></tr>
+            </tbody><hr/>
+            <app-act-card (data)="num = $event"  (price1)="p2 = $event"></app-act-card>
+        </tr>
+    </table>
+</div>

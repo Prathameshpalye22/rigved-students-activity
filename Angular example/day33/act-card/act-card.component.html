@@ -1,0 +1,12 @@
+<div>
+    <table border="2">
+        <tbody *ngFor="let p of products">
+                <tr>
+                        <td>Product Name: {{p.name}}</td>
+                        <td>Price: {{p.price}}</td>
+                        <td><button (click)="add(p.price)">Add</button></td>
+                        <td><button (click)="remov(p.price)">Remove</button></td>
+                </tr>
+        </tbody>
+    </table>
+</div>
