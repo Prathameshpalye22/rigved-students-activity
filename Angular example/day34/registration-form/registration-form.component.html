@@ -4,13 +4,13 @@
         <div>
             Firstname :
             <input type="text" name="fn" ngModel #td1="ngModel" required minlength="3">
-            <span [hidden]="td1.valid || td1.pristine" class="text-danger">First name must be greater than and equal to 3</span>
+            <span [hidden]="td1.valid || td1.pristine" class="text-danger">Firstname must be greater than and equal to 3</span>
         </div>
         <br>
         <div>
             Lastname:
             <input type="text" name="ln" ngModel #td2="ngModel" required minlength="3">
-            <span [hidden]="td2.valid || td2.pristine" class="text-danger">Last name must be greater than and equal to 3</span>
+            <span [hidden]="td2.valid || td2.pristine" class="text-danger">Lastname must be greater than and equal to 3</span>
         </div>
         <br>
         <div >
